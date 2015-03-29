@@ -8,13 +8,17 @@ exception handling with easy to read client prompts.
 
 ###Usage
 
-`Challah.log(message, color, effect);`
+`Challah.log(message, color, background, effect);`
 
-Alias: `_cl(message, color, effect);`
+Alias: `_cl(message, color, background, effect);`
 
-`Challah.error(message, color, effect);`
+`Challah.error(message, color, background, effect);`
 
-Alias: `_ce(message, color, effect);`
+Alias: `_ce(message, color, background, effect);`
+
+`Challah.warning(message, color, background, effect);`
+
+Alias: `_cw(message, color, background, effect);`
 
 ###Example
 
