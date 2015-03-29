@@ -9,8 +9,11 @@ exception handling with easy to read client prompts.
 ###Usage
 
 `Challah.log(message, color, effect);`
+
 Alias: `_cl(message, color, effect);`
+
 `Challah.error(message, color, effect);`
+
 Alias: `_ce(message, color, effect);`
 
 ###Example
