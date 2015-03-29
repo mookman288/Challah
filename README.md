@@ -12,6 +12,10 @@ exception handling with easy to read client prompts.
 
 Alias: `_cl(message, color, background, effect);`
 
+`Challah.debug(message, color, background, effect);`
+
+Alias: `_cd(message, color, background, effect);`
+
 `Challah.error(message, color, background, effect);`
 
 Alias: `_ce(message, color, background, effect);`

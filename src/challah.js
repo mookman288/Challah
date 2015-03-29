@@ -46,8 +46,37 @@ var	Challah	=	(function() {
 		}, 
 		warning:	function() {
 			
-			
 		}
+	}
+	
+	/**
+	 * Debug logging wrapper. 
+	 * 
+	 * @param string message
+	 * @param string|null color
+	 * @param string|null background
+	 * @param string|null effect
+	 * @return boolean
+	 */
+	Challah.prototype.debug	=	function(message, color, background, effect) {
+		if (typeof window.console.debug !== "undefined") {
+			//Declare variables.
+			var	color	=	color || "blue";
+			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color) : 
+				("color: " + (Challah.prototype.get("colors", color) || color));
+			
+			//If there is a message, log to console. 
+			if (message.length)	console.debug("%c%s", color, message);
+		} else {
+			//Declare variables.
+			var	color	=	color || "red";
+			
+			//If there is a message, Challah log.
+			if (message.length)	Challah.prototype.log(message, color, background, effect);
+		}
+		
+		//Return true;
+		return true;
 	}
 	
 	/**
@@ -168,6 +197,7 @@ var	Challah	=	(function() {
 })(Challah);
 
 //Set global alias functions.
+var	_cd	=	function(m, c, b, e) { return Challah.debug(m, c, b, e); }
 var	_ce	=	function(m, c, b, e) { return Challah.error(m, c, b, e); }
 var	_cl	=	function(m, c, b, e) { return Challah.log(m, c, b, e); }
 var	_cw	=	function(m, c, b, e) { return Challah.warning(m, c, b, e); }
