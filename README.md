@@ -6,6 +6,12 @@
 Challah is a prototype library for aliasing console mechanics and eventually implementing error or 
 exception handling with easy to read client prompts. 
 
+###Purpose
+
+The best way to learn is by doing. Challah is a collection of steps taken toward learning more 
+about JavaScript, and the foundations of building a library. Feel free to peruse the commits to 
+learn more about how Challah was developed. 
+
 ###Usage
 
 `Challah.log(message, color, background, effect);`

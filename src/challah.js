@@ -34,19 +34,74 @@ var	Challah	=	(function() {
 		"yellow":	"#F8B100"
 	};
 	Challah.prototype.effects	=	Challah.prototype.effects || {
-		//Set effects. 
-		debug:		function() {
+		//Set effects.
+		console:	function(css) {
+			//Declare variables.
+			var	css	=	css || {
+				"padding":		"0.10em 0.25em",
+				"background":	Challah.prototype.get("colors", "black"),
+				"color":		Challah.prototype.get("colors", "green"),
+			}
 			
+			//Process and return properties. 
+			return Challah.prototype.processCSSProperties(css);
+		}, 
+		debug:		function(css) {
+			//Declare variables.
+			var	css	=	css || {
+				"padding":		"0.10em",
+				"background":	"repeating-linear-gradient(45deg, transparent, transparent 0.50em, #EEE 0.50em, #EEE 1.00em)",
+				"color":		Challah.prototype.get("colors", "cerulean"),
+			}
+			
+			//Process and return properties. 
+			return Challah.prototype.processCSSProperties(css);
 		},
-		error:		function() {
+		error:		function(css) {
+			//Declare variables.
+			var	css	=	css || {
+				"padding":		"0.10em",
+				"background":	"repeating-linear-gradient(45deg, #222, #222 0.50em, #000 0.50em, #000 1.00em)",
+				"color":		Challah.prototype.get("colors", "red")
+			}
 			
+			//Process and return properties. 
+			return Challah.prototype.processCSSProperties(css);
 		}, 
-		success:	function() {
+		success:	function(css) {
+			//Declare variables.
+			var	css	=	css || {
+				"padding":		"0.10em",
+				"background":	"repeating-linear-gradient(45deg, #444, #444 0.50em, #222 0.50em, #222 1.00em)",
+				"color":		Challah.prototype.get("colors", "green"),
+			}
 			
+			//Process and return properties. 
+			return Challah.prototype.processCSSProperties(css);
 		}, 
-		warning:	function() {
+		warning:	function(css) {
+			//Declare variables.
+			var	css	=	css || {
+				"padding":		"0.10em",
+				"background":	"repeating-linear-gradient(45deg, #444, #444 0.50em, #222 0.50em, #222 1.00em)",
+				"color":		Challah.prototype.get("colors", "yellow"),
+			}
 			
+			//Process and return properties. 
+			return Challah.prototype.processCSSProperties(css);
 		}
+	}
+	
+	/**
+	 * Braiding Rainbow Challah!
+	 * 
+	 * @param string message
+	 * @param string|null color
+	 * @param string|null background
+	 * @return boolean
+	 */
+	Challah.prototype.braid	=	function(message, color, background) {
+		
 	}
 	
 	/**
@@ -59,10 +114,11 @@ var	Challah	=	(function() {
 	 * @return boolean
 	 */
 	Challah.prototype.debug	=	function(message, color, background, effect) {
+		//If console debugging is allowed. 
 		if (typeof window.console.debug !== "undefined") {
 			//Declare variables.
-			var	color	=	color || "blue";
-			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color) : 
+			var	color	=	effect || color || "debug"; 
+			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color)() : 
 				("color: " + (Challah.prototype.get("colors", color) || color));
 			
 			//If there is a message, log to console. 
@@ -91,8 +147,8 @@ var	Challah	=	(function() {
 	Challah.prototype.error	=	function(message, color, background, effect) {
 		if (typeof window.console.error !== "undefined") {
 			//Declare variables.
-			var	color	=	color || "red";
-			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color) : 
+			var	color	=	effect || color || "error"; 
+			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color)() : 
 				("color: " + (Challah.prototype.get("colors", color) || color));
 			
 			//If there is a message, log to console. 
@@ -132,8 +188,8 @@ var	Challah	=	(function() {
 	 */
 	Challah.prototype.log	=	function(message, color, background, effect, error) { 
 		//Declare variables.
-		var	color	=	color || "black";
-		var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color) : 
+		var	color	=	color || "black"; 
+		var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color)() : 
 			("color: " + (Challah.prototype.get("colors", color) || color));
 		
 		//If there is a message, log to console. 
@@ -142,6 +198,26 @@ var	Challah	=	(function() {
 		//Return true;
 		return true;
 	};
+	
+	/**
+	 * Parses and processes CSS properties into CSS strings. 
+	 * 
+	 * @param object properties
+	 * @return string
+	 */
+	Challah.prototype.processCSSProperties	=	function(properties) {
+		//Declare variables.
+		var	css	=	css || '';
+		
+		//For each CSS line.
+		for (var key in properties) {
+			//Add to the CSS.
+			css		+=	key + ": " + properties[key] + "; ";
+		}
+		
+		//Return the CSS.
+		return css;
+	}
 	
 	/**
 	 * Sets various Challah variables. 
@@ -174,8 +250,8 @@ var	Challah	=	(function() {
 	Challah.prototype.warning	=	function(message, color, background, effect) {
 		if (typeof window.console.warn !== "undefined") {
 			//Declare variables.
-			var	color	=	color || "yellow";
-			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color) : 
+			var	color	=	effect || color || "warning"; 
+			var	color	=	(Challah.prototype.get("effects", color) !== color) ? Challah.prototype.get("effects", color)() : 
 				("color: " + (Challah.prototype.get("colors", color) || color));
 			
 			//If there is a message, log to console. 
