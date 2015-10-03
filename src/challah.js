@@ -7,8 +7,7 @@
  * @License		MIT
  * @Copyright	© 2015 PxO Ink. Most Rights Reserved.
  */
-
-var	Challah	=	(function() {
+var	Challah	=	Challah || (function() {
 	//Use strict mode. 
 	"use strict";
 	
@@ -38,7 +37,7 @@ var	Challah	=	(function() {
 		console:	function(css) {
 			//Declare variables.
 			var	css	=	css || {
-				"padding":		"0.10em 0.25em",
+				"padding":		"0.10em",
 				"background":	Challah.prototype.get("colors", "black"),
 				"color":		Challah.prototype.get("colors", "green"),
 			}
